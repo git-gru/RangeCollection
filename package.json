@@ -1,0 +1,19 @@
+{
+  "name": "range-collection",
+  "version": "1.0.0",
+  "description": "A range collection is an aggregate of number ranges",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git-gru/js-RangeCollection.git"
+  },
+  "author": "Felonius Gru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git-gru/js-RangeCollection/issues"
+  },
+  "homepage": "https://github.com/git-gru/js-RangeCollection#readme"
+}
