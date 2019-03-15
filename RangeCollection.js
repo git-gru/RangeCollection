@@ -7,6 +7,10 @@
  * NOTE: Feel free to add any extra member variables/functions you like.
  */
 export class RangeCollection {
+    constructor() {
+        this.collection = [];
+    }
+
     /**
      * Adds a range to the collection
      * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
