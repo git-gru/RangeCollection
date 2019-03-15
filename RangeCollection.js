@@ -18,7 +18,52 @@ export class RangeCollection {
      * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
      */
     add(range) {
-        // TODO: implement this
+        if (!Utils.isRange(range)) {
+            return;
+        }
+
+        if (range[0] === range[1]) {
+            return;
+        }
+
+        const firstItem = this.collection[0];
+        if (!this.collection.length || range[1] < firstItem[0]) {
+            this.collection.unshift(range);
+            return;
+        }
+
+        const lastItem = this.collection[this.collection.length - 1];
+        if (lastItem[1] < range[0]) {
+            this.collection.push(range);
+            return;
+        }
+
+        let rangesToDelete = 0;
+        let newRange = [range[0], range[1]];
+        let insertionIndex = -1;
+        for (let i = 0; i < this.collection.length; i++) {
+            if (
+                this.collection[i][1] < range[0] &&
+                this.collection[i + 1] &&
+                this.collection[i + 1][0] > range[1]
+            ) {
+                insertionIndex = i + 1;
+            } else if (Utils.hasIntersection(this.collection[i], newRange)) {
+                const minStart = Math.min(this.collection[i][0], newRange[0]);
+                const maxEnd = Math.max(this.collection[i][1], newRange[1]);
+                newRange = [minStart, maxEnd];
+                rangesToDelete++;
+                if (insertionIndex === -1) {
+                    insertionIndex = i;
+                }
+            } else if (insertionIndex > -1) {
+                break;
+            }
+        }
+
+        if (insertionIndex > -1) {
+            this.collection.splice(insertionIndex, rangesToDelete, newRange);
+        }
     }
 
     /**
