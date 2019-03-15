@@ -71,7 +71,45 @@ export class RangeCollection {
      * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
      */
     remove(range) {
-        // TODO: implement this
+        if (!Utils.isRange(range)) {
+            return;
+        }
+
+        if (range[0] === range[1] || !this.collection.length) {
+            return;
+        }
+
+        for (let i = 0; i < this.collection.length; i++) {
+            const start = this.collection[i][0];
+            const end = this.collection[i][1];
+            if (start >= range[1]) {
+                break;
+            }
+            if (end <= range[0] || !Utils.hasIntersection(range, this.collection[i])) {
+                continue;
+            }
+            if (start >= range[0] && end <= range[1]) {
+                const newRange = [range[1] + 1, end];
+                if (Utils.getRangeLength(newRange) > 1) {
+                    this.collection[i][0] = newRange[0];
+                } else {
+                    this.collection.splice(i, 1);
+                    i--;
+                }
+            } else if (start < range[0]) {
+                if (end <= range[1]) {
+                    this.collection[i][1] = range[0];
+                } else {
+                    const newRange = [range[1], this.collection[i][1]];
+                    if (Utils.getRangeLength(newRange) >= 1) {
+                        this.collection.splice(i + 1, 0, newRange);
+                    }
+                    this.collection[i][1] = range[0];
+                }
+            } else if (start >= range[0]) {
+                this.collection[i][0] = range[1];
+            }
+        }
     }
 
     /**

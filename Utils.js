@@ -38,4 +38,12 @@ export class Utils {
         }
         return true;
     }
+
+    /**
+     * @param {Array<number>} range
+     * @return {number}
+     */
+    static getRangeLength(range) {
+        return range[1] - range[0];
+    }
 }
