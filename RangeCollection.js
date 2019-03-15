@@ -75,9 +75,19 @@ export class RangeCollection {
     }
 
     /**
+     * @return {string} - the list of ranges in the range collection
+     * @example [1, 5), [10, 11), [100, 201)
+     */
+    toString() {
+        return this.collection
+            .map(range => `[${range[0]}, ${range[1]})`)
+            .join(", ");
+    }
+
+    /**
      * Prints out the list of ranges in the range collection
      */
     print() {
-        // TODO: implement this
+        console.log(this.toString());
     }
 }
