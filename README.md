@@ -19,10 +19,10 @@ git clone https://github.com/git-gru/js-RangeCollection
 
 Install dependencies (run on repo):
 ```
-npm install
+yarn install
 ```
 
 Start App (run on repo):
 ```
-npm start
+yarn start
 ```
