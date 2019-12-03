@@ -14,7 +14,7 @@
 
 Clone the repository:
 ```
-git clone https://github.com/git-gru/js-RangeCollection
+git clone https://github.com/git-gru/RangeCollection
 ```
 
 Install dependencies (run on repo):
